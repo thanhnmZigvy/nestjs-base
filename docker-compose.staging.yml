@@ -1,0 +1,38 @@
+
+# define env variable at ./.env
+version: "3.8"
+services:
+  server: 
+    env_file: ".env.staging"
+    container_name: server
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "3001:3001"
+    networks:
+      - yup-md-backend
+  postgres:
+    container_name: postgres
+    image: postgres:17-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: '$DB_USERNAME'
+      POSTGRES_PASSWORD: '$DB_PASSWORD'
+      POSTGRES_DB: '$DB_DATABASE'
+    ports:
+      - '$DB_PORT:$DB_PORT'
+    volumes:
+      - database_data_yup_md:/var/lib/postgresql/data
+    networks:
+      - yup-md-backend
+
+volumes:
+  database_data_yup_md:
+    driver: local
+
+networks:
+  yup-md-backend:

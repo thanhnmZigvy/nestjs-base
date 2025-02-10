@@ -1,0 +1,24 @@
+
+# define env variable at ./.env
+version: '0.0.1'
+name: 'yup-md-dev'
+services:
+   postgres:
+      container_name: database
+      image: postgres:17-alpine
+      restart: always
+      environment:
+        POSTGRES_USER: '$DB_USERNAME'
+        POSTGRES_PASSWORD: '$DB_PASSWORD'
+        POSTGRES_DB: '$DB_DATABASE'
+      ports:
+        - '$DB_PORT:5432'
+      volumes:
+        - database_data_yup_md:/var/lib/postgresql/data
+      env_file: 
+        - .env
+
+volumes:
+  database_data_yup_md:
+    driver: local
+
