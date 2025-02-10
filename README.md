@@ -12,12 +12,6 @@ This project is a scalable and modular application designed to provide authentic
 
 ```
 📦src
- ┣ 📂athenaHealth
- ┃ ┣ 📂types
- ┃ ┃ ┣ 📜patient-portal-access.ts
- ┃ ┃ ┗ 📜patient.ts
- ┃ ┣ 📜athenaHealth.service.ts
- ┃ ┗ 📜token.json
  ┣ 📂config
  ┃ ┗ 📜configuration.ts
  ┣ 📂entities
@@ -25,6 +19,8 @@ This project is a scalable and modular application designed to provide authentic
  ┃ ┗ 📜user.entity.ts
  ┣ 📂eventSubscriber
  ┃ ┗ 📜user.subscriber.ts
+ ┣ 📂migrations
+ ┃ ┗ 📜Migration20250113102150.ts
  ┣ 📂modules
  ┃ ┣ 📂database
  ┃ ┃ ┣ 📜database.module.ts
@@ -34,19 +30,15 @@ This project is a scalable and modular application designed to provide authentic
  ┃ ┃ ┃ ┣ 📂decorators
  ┃ ┃ ┃ ┃ ┗ 📜auth.decorator.ts
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜athena-user.dto.ts
- ┃ ┃ ┃ ┃ ┣ 📜enum.ts
  ┃ ┃ ┃ ┃ ┣ 📜login.dto.ts
  ┃ ┃ ┃ ┃ ┣ 📜refresh-token.input.ts
- ┃ ┃ ┃ ┃ ┣ 📜sign-in-oath2.input.ts
  ┃ ┃ ┃ ┃ ┣ 📜sign-in.input.ts
  ┃ ┃ ┃ ┃ ┣ 📜sign-up.dto.ts
  ┃ ┃ ┃ ┃ ┗ 📜sign-up.input.ts
  ┃ ┃ ┃ ┣ 📂enums
  ┃ ┃ ┃ ┃ ┗ 📜auth-type.enum.ts
  ┃ ┃ ┃ ┣ 📜authentication.resolver.ts
- ┃ ┃ ┃ ┣ 📜authentication.service.ts
- ┃ ┃ ┃ ┗ 📜type.ts
+ ┃ ┃ ┃ ┗ 📜authentication.service.ts
  ┃ ┃ ┣ 📂guards
  ┃ ┃ ┃ ┣ 📂access-token
  ┃ ┃ ┃ ┃ ┗ 📜access-token.guard.ts
@@ -64,14 +56,15 @@ This project is a scalable and modular application designed to provide authentic
  ┃ ┣ 📂orm
  ┃ ┃ ┗ 📜orm.module.ts
  ┃ ┗ 📜schema.gql
+ ┣ 📂morgan
+ ┃ ┗ 📜Logger.middleware.ts
+ ┣ 📂seeders
+ ┃ ┗ 📜UserSeeder.ts
  ┣ 📂types
  ┃ ┣ 📜index.ts
  ┃ ┗ 📜kysely-codegen.ts
  ┣ 📂utils
- ┃ ┣ 📜axiosInstance.ts
- ┃ ┣ 📜proxyAthenaHealthApi.ts
  ┃ ┣ 📜request-context.ts
- ┃ ┣ 📜token.ts
  ┃ ┗ 📜typescriptEnhance.ts
  ┣ 📜app.module.ts
  ┣ 📜app.service.ts
@@ -79,14 +72,6 @@ This project is a scalable and modular application designed to provide authentic
 ```
 
 ### **Folder/Module Details**
-
-#### **athenaHealth**
-
-- **Purpose:** Provides services and types specific to AthenaHealth API integration.
-- **Key Files:**
-  - `athenaHealth.service.ts`: Handles API interactions.
-  - `types/`: Contains TypeScript definitions for AthenaHealth data models.
-  - `token.json`: Stores API tokens securely.
 
 #### **config**
 
@@ -131,7 +116,7 @@ This project is a scalable and modular application designed to provide authentic
    - Key Files: `myConfig.module.ts`, `myConfig.service.ts`.
 
 4. **orm**
-   - Provides Object-Relational Mapping (ORM) setup.
+   - Provides Object-Relational Mapping (MIKROORM) setup.
    - Key File: `orm.module.ts`.
 
 #### **types**
@@ -143,8 +128,6 @@ This project is a scalable and modular application designed to provide authentic
 
 - **Purpose:** Contains reusable utility functions and services.
 - **Key Files:**
-  - `axiosInstance.ts`: Configured Axios instance.
-  - `proxyAthenaHealthApi.ts`: Proxy logic for AthenaHealth APIs.
   - `request-context.ts`: Handles context-aware request tracking.
   - `typescriptEnhance.ts`: TypeScript utility helpers.
 
