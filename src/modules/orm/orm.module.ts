@@ -2,8 +2,6 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { Module } from '@nestjs/common';
 
-import { User } from '@/entities/user.entity';
-
 import { MyConfigService } from '../myConfigService/myConfig.service';
 
 /**
@@ -21,10 +19,6 @@ import { MyConfigService } from '../myConfigService/myConfig.service';
       inject: [MyConfigService], // Inject MyConfigService to access configuration data
       driver: PostgreSqlDriver,
     }),
-    MikroOrmModule.forFeature({
-      entities: [User], // Register the User entity for use in the application
-    }),
   ],
-  exports: [MikroOrmModule], // Export MikroOrmModule for use in other modules
 })
 export class OrmModule {}

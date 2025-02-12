@@ -1,3 +1,4 @@
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
@@ -5,7 +6,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { UserSubscriber } from '@/eventSubscriber/user.subscriber';
 
 import { MyConfigService } from '../myConfigService/myConfig.service';
-import { OrmModule } from '../orm/orm.module';
+import { User } from '../user/user.entity';
+import { UserModule } from '../user/user.module';
 import { AuthenticationResolver } from './authentication/authentication.resolver';
 import { AuthenticationService } from './authentication/authentication.service';
 import { AccessTokenGuard } from './guards/access-token/access-token.guard';
@@ -20,7 +22,10 @@ import { HashingService } from './hashing/hashing.service';
  */
 @Module({
   imports: [
-    OrmModule, // Import the ORM module for database interactions
+    UserModule,
+    MikroOrmModule.forFeature({
+      entities: [User],
+    }),
     JwtModule.registerAsync({
       useFactory: (configService: MyConfigService) => {
         const { jwt } = configService.data; // Retrieve JWT configuration from the config service

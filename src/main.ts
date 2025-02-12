@@ -57,7 +57,7 @@ async function bootstrap() {
       // If migrations were applied, seed the database with initial data
       if (result.length) {
         const seedManager = generator.getSeeder();
-        await seedManager.seedString('UserSeeder'); // Seed the database using the 'UserSeeder'
+        await seedManager.seedString('DatabaseSeeder'); // Seed the database using the 'DatabaseSeeder'
       }
     } catch (error) {
       // Log any errors that occur during migration or seeding

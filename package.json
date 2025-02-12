@@ -11,6 +11,7 @@
     "start": "nest start",
     "start:dev2": "cross-env NODE_ENV=development nest start --watch",
     "start:dev": "cross-env NODE_ENV=development nest start -b swc  --watch",
+    "seeder:dev": "cross-env NODE_ENV=development yarn start --entryFile seeding",
     "start:debug": "nest start --debug --watch",
     "genSqlType": "yarn kysely-codegen --dialect postgres --env-file .env/.env.development --out-file src/types/kysely-codegen.ts",
     "start:prod": "node dist/src/main.js",

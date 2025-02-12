@@ -12,6 +12,7 @@ import { IamModule } from './modules/iam/iam.module';
 import { MyConfigServiceModule } from './modules/myConfigService/myConfig.module';
 import { MyConfigService } from './modules/myConfigService/myConfig.service';
 import { OrmModule } from './modules/orm/orm.module';
+import { UserModule } from './modules/user/user.module';
 import { LoggerMiddleware } from './morgan/Logger.middleware';
 
 /**
@@ -62,6 +63,7 @@ import { LoggerMiddleware } from './morgan/Logger.middleware';
     OrmModule,
     DatabaseModule,
     IamModule,
+    UserModule,
   ],
 
   // Providers for dependency injection

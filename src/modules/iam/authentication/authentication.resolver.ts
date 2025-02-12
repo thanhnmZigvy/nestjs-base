@@ -1,7 +1,7 @@
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Response } from 'express';
 
-import { User } from '@/entities/user.entity';
+import { User } from '@/modules/user/user.entity';
 import { getCurrentUser } from '@/utils/request-context';
 import { objectKeys } from '@/utils/typescriptEnhance';
 

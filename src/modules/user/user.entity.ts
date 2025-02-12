@@ -1,9 +1,9 @@
 import { Entity, Property } from '@mikro-orm/core';
 import { Field, ObjectType } from '@nestjs/graphql';
 
-import { UserRepository } from '@/modules/iam/user.repository';
+import { UserRepository } from '@/modules/user/user.repository';
 
-import { BaseEntity } from './base.entity';
+import { BaseEntity } from '../../common/base.entity';
 
 @Entity({ repository: () => UserRepository })
 @ObjectType()

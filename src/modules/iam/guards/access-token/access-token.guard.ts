@@ -12,8 +12,8 @@ import get from 'lodash/get';
 import { MyConfigService } from '@/modules/myConfigService/myConfig.service';
 import { setCurrentUser } from '@/utils/request-context';
 
+import { UserRepository } from '../../../user/user.repository';
 import { PayloadToken } from '../../authentication/authentication.service';
-import { UserRepository } from '../../user.repository';
 
 @Injectable()
 export class AccessTokenGuard implements CanActivate {

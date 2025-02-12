@@ -3,11 +3,11 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
 
-import { User } from '@/entities/user.entity';
 import { MyConfigService } from '@/modules/myConfigService/myConfig.service';
+import { User } from '@/modules/user/user.entity';
 
+import { UserService } from '../../user/user.service';
 import { HashingService } from '../hashing/hashing.service';
-import { UserRepository } from '../user.repository';
 import { RefreshTokenInput } from './dto/refresh-token.input';
 import { SignInInput } from './dto/sign-in.input';
 import { SignUpInput } from './dto/sign-up.input';
@@ -23,12 +23,12 @@ export class AuthenticationService {
     private readonly jwtService: JwtService,
     private readonly hashingService: HashingService,
 
-    private readonly userRepository: UserRepository,
+    private readonly userService: UserService,
     private readonly em: EntityManager,
   ) {}
 
   async signUp(signUpInput: SignUpInput) {
-    const alreadyHasUser = await this.userRepository.findOne({
+    const alreadyHasUser = await this.userService.findOne({
       email: signUpInput.email,
     });
 
@@ -36,7 +36,7 @@ export class AuthenticationService {
       throw new UnauthorizedException('Email is Already Registered');
     }
 
-    const user = await this.userRepository.create(signUpInput);
+    const user = this.userService.create(signUpInput);
     await this.em.flush();
     // await this.em.persistAndFlush(user);
 
@@ -44,7 +44,7 @@ export class AuthenticationService {
   }
 
   async signIn(signInInput: SignInInput) {
-    const user = await this.userRepository.findOne({
+    const user = await this.userService.findOne({
       email: signInInput.email,
     });
     if (!user) {
@@ -92,7 +92,7 @@ export class AuthenticationService {
         secret: this.configService.data.jwt.secret,
       },
     );
-    const user = await this.userRepository.findOneOrFail({
+    const user = await this.userService.findOneOrFail({
       id,
     });
     return this.generateTokens(user);

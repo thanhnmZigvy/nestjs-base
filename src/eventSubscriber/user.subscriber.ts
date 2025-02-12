@@ -2,7 +2,7 @@ import { EntityName, EventArgs, EventSubscriber } from '@mikro-orm/core';
 import { EntityManager } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
 
-import { User } from '@/entities/user.entity';
+import { User } from '@/modules/user/user.entity';
 
 import { HashingService } from '../modules/iam/hashing/hashing.service';
 

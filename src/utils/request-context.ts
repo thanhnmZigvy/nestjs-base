@@ -2,7 +2,7 @@ import { AsyncLocalStorage } from 'async_hooks';
 import type { NextFunction, Request, Response } from 'express';
 import set from 'lodash/set';
 
-import type { User } from '@/entities/user.entity';
+import type { User } from '@/modules/user/user.entity';
 
 import { REQUEST_USER_KEY } from '../modules/iam/iam.constants';
 
