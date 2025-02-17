@@ -38,6 +38,7 @@ export class AuthenticationService {
 
     const user = this.userService.create(signUpInput);
     await this.em.flush();
+    // await this.userService.getEntityManager().flush();
     // await this.em.persistAndFlush(user);
 
     return { user };
